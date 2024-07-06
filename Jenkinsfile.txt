@@ -1,7 +1,8 @@
 pipeline{
     agent any
     environment {
-    FIREBASE_DEPLOY_TOKEN = credentials('firebase-token')
+    // FIREBASE_DEPLOY_TOKEN = credentials('firebase-token')
+    TOKENAWS = credentials('ssh-production-key')
     }
 
  stages{
@@ -13,18 +14,18 @@ pipeline{
         } 
         stage('Testing Environment'){
             steps{
-            sh 'firebase deploy -P testing-env-denvet --token "$FIREBASE_DEPLOY_TOKEN"'
+            sh 'ssh -T -oStrictHostKeyChecking=no -i "$TOKENAWS" ec2-user@18.208.119.44 " sudo dnf update; sudo dnf install git -y; sudo dnf install -y httpd; sudo systemctl start httpd; sudo rm -Rf /var/www/html/; sudo git clone https://github.com/eduval/KelownaTrails-DevNet/ /var/www/html"'
             input message: 'After testing. Do you want to continue with Staging Environment? (Click "Proceed" to continue)'
             }
         } 
         stage('Staging Environment'){
             steps{
-             sh 'firebase deploy -P staging-env-devnet --token "$FIREBASE_DEPLOY_TOKEN"'
-            }
+           sh 'ssh -T -oStrictHostKeyChecking=no -i "$TOKENAWS" ec2-user@54.82.176.21 " sudo dnf update; sudo dnf install git -y; sudo dnf install -y httpd; sudo systemctl start httpd; sudo rm -Rf /var/www/html/; sudo git clone https://github.com/eduval/KelownaTrails-DevNet/ /var/www/html"'
+             }
         } 
         stage('Production Environment'){
             steps{
-            sh 'firebase deploy -P production-env-devnet --token "$FIREBASE_DEPLOY_TOKEN"'
+            sh 'ssh -T -oStrictHostKeyChecking=no -i "$TOKENAWS" ec2-user@34.226.139.200 " sudo dnf update; sudo dnf install git -y; sudo dnf install -y httpd; sudo systemctl start httpd; sudo rm -Rf /var/www/html/; sudo git clone https://github.com/eduval/KelownaTrails-DevNet/ /var/www/html"'
             }
         } 
     }
