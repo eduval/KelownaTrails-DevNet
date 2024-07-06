@@ -62,26 +62,25 @@ SQAC114
          display: none;
       }
    </style>
-	 <script src=
-"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    </script>
- 
-    <script>
-        /* Add "https://api.ipify.org?format=json" to 
-        get the IP Address of user*/
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+   </script>
 
-	    
-var hostname = window. location. hostname;
-	    
-        $(document).ready(()=>{
-            $.getJSON("https://api.ipify.org?format=json",
+   <script>
+      /* Add "https://api.ipify.org?format=json" to 
+      get the IP Address of user*/
+
+
+      var hostname = window.location.hostname;
+
+      $(document).ready(() => {
+         $.getJSON("https://api.ipify.org?format=json",
             function (data) {
- 
-                // Displayin IP address on screen
-                $("#gfg").html(hostname);
+
+               // Displayin IP address on screen
+               $("#gfg").html(hostname);
             })
-        });
-    </script>
+      });
+   </script>
    <title>DevOps Bonus Project - CCTB</title>
 </head>
 
@@ -90,8 +89,8 @@ var hostname = window. location. hostname;
             visibility:hidden;" alt="Flying bee" height="179" width="144" />
 
    <h1> Kelowna Wine Trails and Tours</h1>
-   <h3> Student name / email </h3>
-	<p id="gfg"></p>
+   <h3> Washington Valencia / educristo@gmail.com </h3>
+   <p id="gfg"></p>
    <hr size="1" color="#b6bcbb"> <br />
 
    <div class="content" align="left">
